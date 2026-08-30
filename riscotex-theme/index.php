@@ -241,7 +241,6 @@ $status = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['en
 					<label><?php riscotex_e( 'label_nome' ); ?><input type="text" name="nome" required></label>
 					<label><?php riscotex_e( 'label_empresa' ); ?><input type="text" name="empresa"></label>
 					<label><?php riscotex_e( 'label_telefone' ); ?><input type="tel" name="telefone"></label>
-					<label><?php riscotex_e( 'label_whatsapp' ); ?><input type="tel" name="whatsapp"></label>
 					<label><?php riscotex_e( 'label_email' ); ?><input type="email" name="email" required></label>
 					<label><?php riscotex_e( 'label_cidade' ); ?><input type="text" name="cidade"></label>
 					<label><?php riscotex_e( 'label_estado' ); ?><input type="text" name="estado"></label>

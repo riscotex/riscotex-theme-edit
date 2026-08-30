@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Riscotex Papéis | Papéis Técnicos para Corte Industrial" },
+      { name: "description", content: "Soluções em papéis técnicos e perfurados para corte automático industrial. Perfuração universal e microperfurado." },
+      { name: "author", content: "Riscotex Papéis" },
+      { property: "og:title", content: "Riscotex Papéis | Papéis Técnicos para Corte Industrial" },
+      { property: "og:description", content: "Soluções em papéis técnicos e perfurados para corte automático industrial. Perfuração universal e microperfurado." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@riscotex" },
     ],
     links: [
       {
