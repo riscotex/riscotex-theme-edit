@@ -4,8 +4,8 @@
  */
 get_header();
 
-$reps    = riscotex_repeaters();
-$status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['enviado'] ) ) : '';
+$reps   = riscotex_repeaters();
+$status = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['enviado'] ) ) : '';
 ?>
 
 <main id="topo">
@@ -14,14 +14,18 @@ $status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['e
 	<section class="hero">
 		<img class="hero__bg" src="<?php echo riscotex_img( 'hero_img', 'kraft-textura.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'hero_titulo' ) ); ?>">
 		<div class="wrap hero__inner">
-			<img class="hero__logo" src="<?php echo esc_url( riscotex_asset( 'assets/img/logo-riscotex.png' ) ); ?>" alt="<?php echo esc_attr( riscotex_text( 'marca' ) ); ?>">
+			<img class="hero__logo" src="<?php echo riscotex_img( 'hero_logo', 'logo-riscotex.png' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'marca' ) ); ?>">
 			<p class="hero__tagline"><?php riscotex_e( 'hero_tagline' ); ?></p>
 			<h1><?php riscotex_e( 'hero_titulo' ); ?></h1>
 			<p class="lead"><?php riscotex_e( 'hero_subtitulo' ); ?></p>
 			<p class="hero__text"><?php riscotex_e( 'hero_texto' ); ?></p>
 			<div class="btns">
-				<a class="btn btn--whats" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener"><?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php riscotex_e( 'hero_btn2' ); ?></a>
-				<a class="btn btn--ghost-light" href="#contato"><?php riscotex_e( 'hero_btn1' ); ?></a>
+				<?php if ( riscotex_raw( 'hero_btn1' ) ) : ?>
+					<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'hero_btn1_link' ) ); ?>"><?php riscotex_e( 'hero_btn1' ); ?></a>
+				<?php endif; ?>
+				<?php if ( riscotex_raw( 'hero_btn2' ) ) : ?>
+					<a class="btn btn--ghost-light" href="<?php echo esc_url( riscotex_text( 'hero_btn2_link' ) ); ?>"><?php riscotex_e( 'hero_btn2' ); ?></a>
+				<?php endif; ?>
 			</div>
 			<div class="stats">
 				<?php for ( $s = 1; $s <= 4; $s++ ) : ?>
@@ -51,11 +55,12 @@ $status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['e
 			</div>
 			<div class="ctabar">
 				<p><?php riscotex_e( 'porque_cta_texto' ); ?></p>
-				<a class="btn btn--whats" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener"><?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php riscotex_e( 'porque_cta_btn' ); ?></a>
+				<?php if ( riscotex_raw( 'porque_cta_btn' ) ) : ?>
+					<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'porque_cta_link' ) ); ?>"><?php riscotex_e( 'porque_cta_btn' ); ?></a>
+				<?php endif; ?>
 			</div>
 		</div>
 	</section>
-
 
 	<!-- SOBRE -->
 	<section id="sobre" class="section">
@@ -83,38 +88,85 @@ $status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['e
 					</article>
 				<?php endforeach; ?>
 			</div>
-			<div class="btns">
-				<a class="btn btn--whats" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener"><?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php riscotex_e( 'whatsapp_dif_btn' ); ?></a>
-			</div>
+			<?php if ( riscotex_raw( 'dif_btn' ) ) : ?>
+				<div class="btns">
+					<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'dif_btn_link' ) ); ?>"><?php riscotex_e( 'dif_btn' ); ?></a>
+				</div>
+			<?php endif; ?>
 		</div>
 	</section>
 
 	<!-- PRODUTOS -->
 	<section id="produtos" class="section">
-		<div class="wrap split">
-			<div>
-				<p class="eyebrow"><?php riscotex_e( 'prod_eyebrow' ); ?></p>
-				<h2><?php riscotex_e( 'prod_titulo' ); ?></h2>
-				<img class="img" loading="lazy" src="<?php echo riscotex_img( 'prod_img', 'bobinas.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'prod_titulo' ) ); ?>">
+		<div class="wrap">
+
+			<!-- DESTAQUES: PAPEL UNIVERSAL + MICROPERFURADO -->
+			<p class="eyebrow"><?php riscotex_e( 'destaque_eyebrow' ); ?></p>
+			<h2><?php riscotex_e( 'destaque_titulo' ); ?></h2>
+			<p class="muted lead-sm"><?php riscotex_e( 'destaque_texto' ); ?></p>
+
+			<div class="destaques">
+				<?php
+				$destaques = array(
+					1 => 'papel-universal.jpg',
+					2 => 'papel-microperfurado.jpg',
+				);
+				foreach ( $destaques as $d => $fallback ) :
+					?>
+					<article class="destaque">
+						<div class="destaque__media">
+							<img loading="lazy" src="<?php echo riscotex_img( 'destaque' . $d . '_img', $fallback ); ?>" alt="<?php echo esc_attr( riscotex_text( 'destaque' . $d . '_titulo' ) ); ?>">
+							<?php if ( riscotex_raw( 'destaque' . $d . '_medida' ) ) : ?>
+								<span class="destaque__medida"><?php riscotex_e( 'destaque' . $d . '_medida' ); ?></span>
+							<?php endif; ?>
+						</div>
+						<div class="destaque__body">
+							<?php if ( riscotex_raw( 'destaque' . $d . '_tag' ) ) : ?>
+								<span class="destaque__tag"><?php riscotex_e( 'destaque' . $d . '_tag' ); ?></span>
+							<?php endif; ?>
+							<h3><?php riscotex_e( 'destaque' . $d . '_titulo' ); ?></h3>
+							<p><?php riscotex_e( 'destaque' . $d . '_texto' ); ?></p>
+							<ul class="checks checks--dark">
+								<?php for ( $k = 1; $k <= 3; $k++ ) : ?>
+									<?php if ( riscotex_raw( 'destaque' . $d . '_item' . $k ) ) : ?>
+										<li><span>&#10004;</span><?php riscotex_e( 'destaque' . $d . '_item' . $k ); ?></li>
+									<?php endif; ?>
+								<?php endfor; ?>
+							</ul>
+							<?php if ( riscotex_raw( 'destaque' . $d . '_btn' ) ) : ?>
+								<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'destaque' . $d . '_link' ) ); ?>"><?php riscotex_e( 'destaque' . $d . '_btn' ); ?></a>
+							<?php endif; ?>
+						</div>
+					</article>
+				<?php endforeach; ?>
 			</div>
-			<div>
-				<ul class="list">
-					<?php foreach ( $reps['prod']['items'] as $i => $item ) : $n = $i + 1; ?>
-						<li>
-							<h3><?php echo esc_html( get_theme_mod( 'riscotex_prod_titulo_' . $n, $item[0] ) ); ?></h3>
-							<p><?php echo esc_html( get_theme_mod( 'riscotex_prod_texto_' . $n, $item[1] ) ); ?></p>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-				<div class="btns">
-					<a class="btn btn--primary" href="#contato"><?php riscotex_e( 'prod_btn' ); ?></a>
-					<a class="btn btn--whats" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener"><?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?>WhatsApp</a>
+
+			<div class="split split--top">
+				<div>
+					<p class="eyebrow"><?php riscotex_e( 'prod_eyebrow' ); ?></p>
+					<h2><?php riscotex_e( 'prod_titulo' ); ?></h2>
+					<img class="img" loading="lazy" src="<?php echo riscotex_img( 'prod_img', 'bobinas.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'prod_titulo' ) ); ?>">
+				</div>
+				<div>
+					<ul class="list">
+						<?php foreach ( $reps['prod']['items'] as $i => $item ) : $n = $i + 1; ?>
+							<li>
+								<h3><?php echo esc_html( get_theme_mod( 'riscotex_prod_titulo_' . $n, $item[0] ) ); ?></h3>
+								<p><?php echo esc_html( get_theme_mod( 'riscotex_prod_texto_' . $n, $item[1] ) ); ?></p>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+					<?php if ( riscotex_raw( 'prod_btn' ) ) : ?>
+						<div class="btns">
+							<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'prod_btn_link' ) ); ?>"><?php riscotex_e( 'prod_btn' ); ?></a>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- PERFURACAO UNIVERSAL -->
+	<!-- PERFURAÇÃO UNIVERSAL -->
 	<section id="perfuracao" class="section section--dark">
 		<div class="wrap split split--center">
 			<div>
@@ -126,9 +178,11 @@ $status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['e
 						<li><span>&#10004;</span><?php echo esc_html( get_theme_mod( 'riscotex_perf_beneficio_' . $n, $b ) ); ?></li>
 					<?php endforeach; ?>
 				</ul>
-				<a class="btn btn--whats" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener"><?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php riscotex_e( 'perf_btn' ); ?></a>
+				<?php if ( riscotex_raw( 'perf_btn' ) ) : ?>
+					<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'perf_btn_link' ) ); ?>"><?php riscotex_e( 'perf_btn' ); ?></a>
+				<?php endif; ?>
 			</div>
-			<img class="img" loading="lazy" src="<?php echo riscotex_img( 'perf_img', 'perfuracao-detalhe.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'perf_titulo' ) ); ?>">
+			<img class="img" loading="lazy" src="<?php echo riscotex_img( 'perf_img', 'papel-universal.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'perf_titulo' ) ); ?>">
 		</div>
 	</section>
 
@@ -154,16 +208,22 @@ $status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['e
 				<h2><?php riscotex_e( 'cta_titulo' ); ?></h2>
 				<p class="muted"><?php riscotex_e( 'cta_texto' ); ?></p>
 				<ul class="contato">
-					<li>&#128205; <?php riscotex_e( 'contato_endereco' ); ?></li>
-					<li>&#128231; <a href="mailto:<?php echo esc_attr( riscotex_text( 'contato_email1' ) ); ?>"><?php riscotex_e( 'contato_email1' ); ?></a></li>
-					<li>&#128231; <a href="mailto:<?php echo esc_attr( riscotex_text( 'contato_email2' ) ); ?>"><?php riscotex_e( 'contato_email2' ); ?></a></li>
-					<li>&#128231; <a href="mailto:<?php echo esc_attr( riscotex_text( 'contato_email3' ) ); ?>"><?php riscotex_e( 'contato_email3' ); ?></a></li>
-					<li>&#128222; <?php riscotex_e( 'contato_tel1' ); ?></li>
-					<li>&#128222; <?php riscotex_e( 'contato_tel2' ); ?></li>
+					<?php if ( riscotex_raw( 'contato_endereco' ) ) : ?>
+						<li>&#128205; <?php riscotex_e( 'contato_endereco' ); ?></li>
+					<?php endif; ?>
+					<?php for ( $e = 1; $e <= 3; $e++ ) : ?>
+						<?php $mail = riscotex_raw( 'contato_email' . $e ); ?>
+						<?php if ( $mail ) : ?>
+							<li>&#128231; <a href="mailto:<?php echo esc_attr( $mail ); ?>"><?php echo esc_html( $mail ); ?></a></li>
+						<?php endif; ?>
+					<?php endfor; ?>
+					<?php for ( $t = 1; $t <= 2; $t++ ) : ?>
+						<?php $tel = riscotex_raw( 'contato_tel' . $t ); ?>
+						<?php if ( $tel ) : ?>
+							<li>&#128222; <?php echo esc_html( $tel ); ?></li>
+						<?php endif; ?>
+					<?php endfor; ?>
 				</ul>
-				<div class="btns">
-					<a class="btn btn--whats" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener"><?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php riscotex_e( 'whatsapp_cta1' ); ?></a>
-				</div>
 			</div>
 
 			<div class="formbox">
@@ -178,16 +238,16 @@ $status  = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['e
 					<?php wp_nonce_field( 'riscotex_form', 'riscotex_nonce' ); ?>
 					<p class="hp"><label>Não preencha<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label></p>
 
-					<label>Nome*<input type="text" name="nome" required></label>
-					<label>Empresa<input type="text" name="empresa"></label>
-					<label>Telefone<input type="tel" name="telefone"></label>
-					<label>WhatsApp<input type="tel" name="whatsapp"></label>
-					<label>E-mail*<input type="email" name="email" required></label>
-					<label>Cidade<input type="text" name="cidade"></label>
-					<label>Estado<input type="text" name="estado"></label>
-					<label>Produto de Interesse<input type="text" name="produto"></label>
-					<label>Quantidade Estimada<input type="text" name="quantidade"></label>
-					<label class="full">Mensagem<textarea name="mensagem" rows="4"></textarea></label>
+					<label><?php riscotex_e( 'label_nome' ); ?><input type="text" name="nome" required></label>
+					<label><?php riscotex_e( 'label_empresa' ); ?><input type="text" name="empresa"></label>
+					<label><?php riscotex_e( 'label_telefone' ); ?><input type="tel" name="telefone"></label>
+					<label><?php riscotex_e( 'label_whatsapp' ); ?><input type="tel" name="whatsapp"></label>
+					<label><?php riscotex_e( 'label_email' ); ?><input type="email" name="email" required></label>
+					<label><?php riscotex_e( 'label_cidade' ); ?><input type="text" name="cidade"></label>
+					<label><?php riscotex_e( 'label_estado' ); ?><input type="text" name="estado"></label>
+					<label><?php riscotex_e( 'label_produto' ); ?><input type="text" name="produto"></label>
+					<label><?php riscotex_e( 'label_quantidade' ); ?><input type="text" name="quantidade"></label>
+					<label class="full"><?php riscotex_e( 'label_mensagem' ); ?><textarea name="mensagem" rows="4"></textarea></label>
 					<button class="btn btn--primary full" type="submit"><?php riscotex_e( 'form_btn' ); ?></button>
 				</form>
 			</div>
