@@ -31,7 +31,6 @@
 					<li><a href="#sobre">Sobre</a></li>
 					<li><a href="#porque">Por que a Riscotex</a></li>
 					<li><a href="#diferenciais">Diferenciais</a></li>
-
 					<li><a href="#produtos">Produtos</a></li>
 					<li><a href="#perfuracao">Perfuração Universal</a></li>
 					<li><a href="#segmentos">Segmentos</a></li>
@@ -42,9 +41,10 @@
 			?>
 		</nav>
 
-		<a class="btn btn--whats btn--sm" href="<?php echo esc_url( riscotex_text( 'whatsapp_link' ) ); ?>" target="_blank" rel="noopener">
-			<?php echo riscotex_whats_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-			<?php riscotex_e( 'whatsapp_btn_topo' ); ?>
-		</a>
+		<?php if ( riscotex_raw( 'topo_btn' ) ) : ?>
+			<a class="btn btn--primary btn--sm" href="<?php echo esc_url( riscotex_text( 'topo_btn_link' ) ); ?>">
+				<?php riscotex_e( 'topo_btn' ); ?>
+			</a>
+		<?php endif; ?>
 	</div>
 </header>
