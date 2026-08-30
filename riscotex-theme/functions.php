@@ -1,15 +1,15 @@
 <?php
 /**
  * Tema Riscotex - funções principais.
- * Todos os textos, titulos, parágrafos e imagens sao editáveis em
- * Aparência > Personalizar.
+ * Todos os textos, títulos, parágrafos, links de botões e imagens são
+ * editáveis em Aparência > Personalizar > "Conteúdo do Site Riscotex".
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RISCOTEX_VERSION', '1.0.0' );
+define( 'RISCOTEX_VERSION', '2.0.0' );
 
 /* -------------------------------------------------------------------------
  * Setup
@@ -25,7 +25,7 @@ add_action( 'after_setup_theme', 'riscotex_setup' );
 
 /**
  * URL de asset do tema em formato relativo (evita quebra quando o WordPress
- * ainda esta configurado com um dominio antigo/temporario).
+ * ainda está configurado com um domínio antigo/temporário).
  */
 function riscotex_asset( $path ) {
 	$url = get_template_directory_uri() . '/' . ltrim( $path, '/' );
@@ -34,7 +34,7 @@ function riscotex_asset( $path ) {
 }
 
 function riscotex_assets() {
-	// Fontes locais (nao dependem do Google nem do dominio configurado no WP).
+	// Fontes locais (não dependem do Google nem do domínio configurado no WP).
 	wp_enqueue_style( 'riscotex-fonts', riscotex_asset( 'assets/css/fonts.css' ), array(), RISCOTEX_VERSION );
 	wp_register_style( 'riscotex-style', false, array(), RISCOTEX_VERSION );
 	wp_enqueue_style( 'riscotex-style' );
@@ -50,7 +50,7 @@ function riscotex_assets() {
 add_action( 'wp_enqueue_scripts', 'riscotex_assets' );
 
 /* -------------------------------------------------------------------------
- * Helpers de conteudo
+ * Helpers de conteúdo
  * ---------------------------------------------------------------------- */
 function riscotex_defaults() {
 	return array(
@@ -59,15 +59,21 @@ function riscotex_defaults() {
 		'hero_eyebrow'      => 'Riscotex Papéis',
 		'hero_titulo'       => 'Papéis técnicos para corte industrial',
 		'hero_subtitulo'    => 'Soluções que impulsionam a eficiência da sua produção',
-		'hero_texto'        => 'A Riscotex e especialista no desenvolvimento e fornecimento de papéis técnicos para sistemas automáticos de corte industrial. Com tecnologia própria e foco constante em inovação, oferecemos soluções que contribuem para maior produtividade, precisão e qualidade nos processos produtivos dos setores têxtil, couro, sintéticos, automotivo, estofados e calçadista.',
-		'hero_btn1'         => 'Solicitar Orçamento',
-		'hero_btn2'         => 'Falar pelo WhatsApp',
-		'whatsapp_link'     => 'https://wa.me/5541996198555?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Riscotex%20e%20gostaria%20de%20um%20or%C3%A7amento.',
-		'whatsapp_btn_topo' => 'WhatsApp',
-		'whatsapp_flutuante'=> 'WhatsApp',
-		'whatsapp_dif_btn'  => 'Tirar dúvidas no WhatsApp',
-		'whatsapp_cta1'     => '+55 41 99619-8555',
+		'hero_texto'        => 'A Riscotex é especialista no desenvolvimento e fornecimento de papéis técnicos para sistemas automáticos de corte industrial. Com tecnologia própria e foco constante em inovação, oferecemos soluções que contribuem para maior produtividade, precisão e qualidade nos processos produtivos dos setores têxtil, couro, sintéticos, automotivo, estofados e calçadista.',
+		'hero_btn1'         => 'Solicitar orçamento',
+		'hero_btn1_link'    => '#contato',
+		'hero_btn2'         => 'Entrar em contato',
+		'hero_btn2_link'    => '#contato',
 		'hero_tagline'      => 'papéis perfurados',
+
+		// Botão flutuante de WhatsApp (único do site)
+		'whatsapp_link'     => 'https://wa.me/5541996198555?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Riscotex%20e%20gostaria%20de%20um%20or%C3%A7amento.',
+		'whatsapp_flutuante'=> 'WhatsApp',
+		'whatsapp_mostrar'  => 'sim',
+
+		// Botão de contato do topo
+		'topo_btn'          => 'Entrar em contato',
+		'topo_btn_link'     => '#contato',
 
 		// Sobre
 		'sobre_eyebrow'     => 'Quem somos',
@@ -82,6 +88,7 @@ function riscotex_defaults() {
 		'porque_texto'      => 'Cada detalhe da nossa perfuração foi desenvolvido para que sua mesa de corte trabalhe mais rápido, com menos perdas e resultado uniforme em todo o enfesto.',
 		'porque_cta_texto'  => 'Quer saber qual papel é o ideal para a sua máquina de corte?',
 		'porque_cta_btn'    => 'Falar com um especialista',
+		'porque_cta_link'   => '#contato',
 		'stat1_num'         => '2017',
 		'stat1_label'       => 'Início das atividades',
 		'stat2_num'         => '100%',
@@ -94,18 +101,46 @@ function riscotex_defaults() {
 		// Diferenciais
 		'dif_eyebrow'       => 'Nossos diferenciais',
 		'dif_titulo'        => 'Muito além do fornecimento de papel',
-
+		'dif_btn'           => 'Entrar em contato',
+		'dif_btn_link'      => '#contato',
 
 		// Produtos
 		'prod_eyebrow'      => 'Nossos produtos',
 		'prod_titulo'       => 'Linha completa de papéis técnicos industriais',
-		'prod_btn'          => 'Solicitar Cotação',
+		'prod_btn'          => 'Solicitar cotação',
+		'prod_btn_link'     => '#contato',
+
+		// Destaques de produto (diferenciais exclusivos)
+		'destaque_eyebrow'  => 'Nossos diferenciais',
+		'destaque_titulo'   => 'Papel Universal e Papel Microperfurado',
+		'destaque_texto'    => 'Duas perfurações desenvolvidas pela Riscotex para garantir vácuo uniforme, estabilidade do enfesto e acabamento superior em qualquer mesa de corte automático.',
+
+		'destaque1_tag'     => 'Exclusivo Riscotex',
+		'destaque1_titulo'  => 'Papel Universal',
+		'destaque1_texto'   => 'Perfuração de maior diâmetro e espaçamento calculado, que distribui o vácuo por toda a mesa e atende todos os tipos de corte com um único papel.',
+		'destaque1_medida'  => 'Furo de 2,5 mm',
+		'destaque1_item1'   => 'Vácuo distribuído em toda a área da mesa',
+		'destaque1_item2'   => 'Maior compactação do enfesto',
+		'destaque1_item3'   => 'Atende todas as situações de corte',
+		'destaque1_btn'     => 'Entrar em contato',
+		'destaque1_link'    => '#contato',
+
+		'destaque2_tag'     => 'Linha consagrada',
+		'destaque2_titulo'  => 'Papel Microperfurado',
+		'destaque2_texto'   => 'Microfuros densos e uniformes, ideais para tecidos leves e enfestos altos, com sucção homogênea e excelente visualização dos riscos.',
+		'destaque2_medida'  => 'Microfuros de alta densidade',
+		'destaque2_item1'   => 'Sucção uniforme em toda a superfície',
+		'destaque2_item2'   => 'Indicado para tecidos leves e delicados',
+		'destaque2_item3'   => 'Excelente leitura do risco impresso',
+		'destaque2_btn'     => 'Entrar em contato',
+		'destaque2_link'    => '#contato',
 
 		// Perfuração
 		'perf_eyebrow'      => 'Perfuração Universal',
 		'perf_titulo'       => 'Uma inovação exclusiva da Riscotex',
-		'perf_texto'        => 'Criada para atender diferentes processos de corte industrial, essa solução exclusiva proporciona excelente distribuição do vácuo em toda a área da mesa de corte. O resultado e maior compactação do enfesto, estabilidade operacional superior e melhor qualidade final dos cortes.',
-		'perf_btn'          => 'Quero Conhecer Essa Solução',
+		'perf_texto'        => 'Criada para atender diferentes processos de corte industrial, essa solução exclusiva proporciona excelente distribuição do vácuo em toda a área da mesa de corte. O resultado é maior compactação do enfesto, estabilidade operacional superior e melhor qualidade final dos cortes.',
+		'perf_btn'          => 'Quero conhecer essa solução',
+		'perf_btn_link'     => '#contato',
 
 		// Segmentos
 		'seg_eyebrow'       => 'Segmentos atendidos',
@@ -115,20 +150,32 @@ function riscotex_defaults() {
 		// Contato
 		'cta_eyebrow'       => 'Solicite um orçamento',
 		'cta_titulo'        => 'Nossa equipe está pronta para atender você',
-		'cta_texto'         => 'Informe suas necessidades e receba uma proposta personalizada para sua operacao.',
-		'form_btn'          => 'Solicitar Orçamento',
-		'form_email'        => 'vanessa@riscotex.com.br',
+		'cta_texto'         => 'Informe suas necessidades e receba uma proposta personalizada para sua operação.',
+		'form_btn'          => 'Solicitar orçamento',
+		'form_email'        => 'contato@riscotex.com.br',
 		'form_sucesso'      => 'Obrigado! Recebemos sua solicitação e retornaremos em breve.',
-		'form_erro'         => 'Não foi possivel enviar sua mensagem. Tente novamente ou escreva para vanessa@riscotex.com.br.',
+		'form_erro'         => 'Não foi possível enviar sua mensagem. Tente novamente ou escreva para contato@riscotex.com.br.',
 		'contato_endereco'  => 'BR 280, 2941 - Rio Negrinho - SC',
-		'contato_email1'    => 'comercial@riscotex.com.br',
-		'contato_email2'    => 'vanessa@riscotex.com.br',
-		'contato_email3'    => 'aldo@riscotex.com.br',
+		'contato_email1'    => 'contato@riscotex.com.br',
+		'contato_email2'    => 'comercial@riscotex.com.br',
+		'contato_email3'    => '',
 		'contato_tel1'      => '(41) 99619-8555',
 		'contato_tel2'      => '(47) 99238-4773',
 
-		// Rodape
-		'rodape_titulo'     => 'RISCOTEX PAPEIS',
+		// Rótulos do formulário
+		'label_nome'        => 'Nome*',
+		'label_empresa'     => 'Empresa',
+		'label_telefone'    => 'Telefone',
+		'label_whatsapp'    => 'WhatsApp',
+		'label_email'       => 'E-mail*',
+		'label_cidade'      => 'Cidade',
+		'label_estado'      => 'Estado',
+		'label_produto'     => 'Produto de interesse',
+		'label_quantidade'  => 'Quantidade estimada',
+		'label_mensagem'    => 'Mensagem',
+
+		// Rodapé
+		'rodape_titulo'     => 'RISCOTEX PAPÉIS',
 		'rodape_texto'      => 'Tecnologia, qualidade e inovação em papéis técnicos para corte industrial. Soluções desenvolvidas para aumentar a eficiência produtiva e contribuir para o crescimento da sua empresa.',
 		'rodape_copy'       => 'Riscotex Papéis Ltda. - riscotex.com.br',
 	);
@@ -136,39 +183,34 @@ function riscotex_defaults() {
 
 function riscotex_repeaters() {
 	return array(
-		'dif' => array(
+		'dif'    => array(
 			'label' => 'Diferencial',
 			'items' => array(
-				array( 'Tecnologia Própria', 'Desenvolvemos processos exclusivos que garantem melhor desempenho e eficiência operacional.' ),
-				array( 'Soluções Personalizadas', 'Produzimos materiais conforme às necessidades específicas de cada cliente e processo produtivo.' ),
-				array( 'Qualidade Garantida', 'Mantemos rigorosos padrões de controle para assegurar uniformidade e excelência em todos os produtos.' ),
-				array( 'Atendimento Especializado', 'Nossa equipe possui conhecimento técnico para orientar e encontrar a melhor solução para cada aplicacao.' ),
-				array( 'Agilidade e Compromisso', 'Atendimento eficiente, produção organizada e entregas dentro dos prazos estabelecidos.' ),
-				array( 'Parceria de Longo Prazo', 'Construímos relacionamentos sólidos baseados em confiança, transparência e resultados.' ),
+				array( 'Tecnologia própria', 'Desenvolvemos processos exclusivos que garantem melhor desempenho e eficiência operacional.' ),
+				array( 'Soluções personalizadas', 'Produzimos materiais conforme as necessidades específicas de cada cliente e processo produtivo.' ),
+				array( 'Qualidade garantida', 'Mantemos rigorosos padrões de controle para assegurar uniformidade e excelência em todos os produtos.' ),
+				array( 'Atendimento especializado', 'Nossa equipe possui conhecimento técnico para orientar e encontrar a melhor solução para cada aplicação.' ),
+				array( 'Agilidade e compromisso', 'Atendimento eficiente, produção organizada e entregas dentro dos prazos estabelecidos.' ),
+				array( 'Inovação constante', 'Investimos continuamente em novas soluções para acompanhar a evolução do mercado.' ),
 			),
 		),
 		'porque' => array(
 			'label' => 'Motivo',
 			'items' => array(
-				array( 'Perfuração universal exclusiva', 'Uma única bobina que atende todos os processos de corte, sem trocas de papel a cada tipo de enfesto.' ),
-				array( 'Vácuo estável em toda a mesa', 'A distribuição dos furos evita resvalos e mantém o enfesto firme do início ao fim do corte.' ),
-				array( 'Menos perdas, mais produtividade', 'Redução de falhas operacionais, retrabalho e paradas de máquina na sua linha de produção.' ),
-				array( 'Especificações sob medida', 'Gramatura, largura e diâmetro produzidos conforme a máquina e o processo de cada cliente.' ),
-				array( 'Atendimento técnico de verdade', 'Equipe que conhece corte automático e ajuda a escolher o papel certo para cada aplicação.' ),
-				array( 'Entrega no prazo combinado', 'Produção organizada e logística previsível para você nunca parar por falta de papel.' ),
+				array( 'Vácuo uniforme', 'A distribuição correta dos furos mantém o tecido firme do início ao fim do enfesto.' ),
+				array( 'Menos refugo', 'Estabilidade no corte reduz peças fora de medida e retrabalho na produção.' ),
+				array( 'Riscos legíveis', 'O papel garante impressão nítida e leitura fácil dos riscos pela equipe.' ),
+				array( 'Bobinas consistentes', 'Gramatura e perfuração uniformes em toda a bobina, sem variação entre lotes.' ),
 			),
 		),
-		'prod' => array(
-
+		'prod'   => array(
 			'label' => 'Produto',
 			'items' => array(
-				array( 'Papel Perfuração Universal', 'Tecnologia exclusiva da Riscotex desenvolvida para atender diferentes processos de corte industrial com máxima eficiência. Sua configuração proporciona excelente atuacao do vácuo em toda a área da mesa de corte.' ),
-				array( 'Papel Microperfurado', 'Desenvolvido para aplicações que exigem desempenho consistente e excelente comportamento durante os processos automatizados de corte.' ),
-				array( 'Papel Plotter', 'Utilizado para plotagem e desenvolvimento de riscos industriais. Disponível em diferentes especificações.' ),
-				array( 'Papel Separação de Tonalidade', 'Auxilia na organização dos processos produtivos, facilitando a identificação e separação dos materiais.' ),
-				array( 'Papel Proteção para Calandra', 'Desenvolvido para proteção eficiente durante operações industriais, preservando os equipamentos.' ),
-				array( 'Papel para Transferência de Cor / Sublimacao', 'Produzido para aplicações que exigem qualidade e confiabilidade nos processos de transferência de cor.' ),
-				array( 'Semi-Kraft', 'Gramaturas disponíveis: 40g, 50g, 60g, 70g e 80g.' ),
+				array( 'Papel Universal perfurado', 'Perfuração exclusiva Riscotex, com furo de 2,5 mm, indicada para todos os tipos de corte automático.' ),
+				array( 'Papel microperfurado', 'Microfuros densos e uniformes para tecidos leves, enfestos altos e sucção homogênea.' ),
+				array( 'Papel kraft para risco', 'Papel técnico para impressão de riscos com excelente definição e resistência.' ),
+				array( 'Papel de cobertura (filme substituto)', 'Alternativa econômica para cobrir o enfesto e manter o vácuo durante o corte.' ),
+				array( 'Bobinas sob medida', 'Larguras, gramaturas e metragens produzidas conforme a sua mesa de corte.' ),
 			),
 		),
 	);
@@ -176,7 +218,7 @@ function riscotex_repeaters() {
 
 function riscotex_beneficios() {
 	return array(
-		'Melhor atuacao do sistema de vácuo',
+		'Melhor distribuição do vácuo',
 		'Maior estabilidade durante o corte',
 		'Excelente visualização dos riscos',
 		'Redução de falhas operacionais',
@@ -187,7 +229,7 @@ function riscotex_beneficios() {
 }
 
 function riscotex_segmentos() {
-	return array( 'Indústria Têxtil', 'Confecções', 'Couro', 'Calçadista', 'Automotivo', 'Estofados', 'Materiais Sintéticos', 'Móveis e Estofaria' );
+	return array( 'Indústria têxtil', 'Confecções', 'Couro', 'Calçadista', 'Automotivo', 'Estofados', 'Materiais sintéticos', 'Móveis e estofaria' );
 }
 
 /** Retorna um texto editável (com fallback no padrão). */
@@ -203,6 +245,13 @@ function riscotex_text( $key, $default = '' ) {
 	return $value;
 }
 
+/** Igual a riscotex_text(), mas permite valor vazio (para ocultar itens). */
+function riscotex_raw( $key ) {
+	$defaults = riscotex_defaults();
+	$default  = isset( $defaults[ $key ] ) ? $defaults[ $key ] : '';
+	return trim( (string) get_theme_mod( 'riscotex_' . $key, $default ) );
+}
+
 function riscotex_e( $key, $default = '' ) {
 	echo esc_html( riscotex_text( $key, $default ) );
 }
@@ -216,7 +265,7 @@ function riscotex_img( $key, $fallback_file ) {
 	return esc_url( $url );
 }
 
-/** Icone SVG do WhatsApp. */
+/** Ícone SVG do WhatsApp. */
 function riscotex_whats_icon() {
 	return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.7h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.64.96.97-3.55-.23-.36a9.58 9.58 0 0 1-1.47-5.12c0-5.3 4.32-9.6 9.63-9.6a9.56 9.56 0 0 1 6.8 2.82 9.5 9.5 0 0 1 2.82 6.79c0 5.3-4.32 9.6-9.62 9.6M20.52 3.5A11.86 11.86 0 0 0 12.05 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.15 1.6 5.96L0 24l6.26-1.64a11.94 11.94 0 0 0 5.79 1.47h.01c6.58 0 11.94-5.35 11.94-11.93 0-3.19-1.24-6.19-3.48-8.4"/></svg>';
 }
@@ -246,19 +295,20 @@ function riscotex_add_image( $wp_customize, $section, $key, $label ) {
 
 function riscotex_customize_register( $wp_customize ) {
 	$panel = 'riscotex_panel';
-	$wp_customize->add_panel( $panel, array( 'title' => 'Conteudo do Site Riscotex', 'priority' => 5 ) );
+	$wp_customize->add_panel( $panel, array( 'title' => 'Conteúdo do Site Riscotex', 'priority' => 5 ) );
 
 	$sections = array(
-		'riscotex_hero'     => 'Topo / Banner',
-		'riscotex_sobre'    => 'Quem Somos',
-		'riscotex_porque'   => 'Por que escolher a Riscotex',
-		'riscotex_dif'      => 'Diferenciais',
-
-		'riscotex_prod'     => 'Produtos',
-		'riscotex_perf'     => 'Perfuração Universal',
-		'riscotex_seg'      => 'Segmentos',
-		'riscotex_contato'  => 'Contato e Formulário',
-		'riscotex_rodape'   => 'Rodape',
+		'riscotex_hero'      => 'Topo / Banner',
+		'riscotex_sobre'     => 'Quem somos',
+		'riscotex_porque'    => 'Por que escolher a Riscotex',
+		'riscotex_dif'       => 'Diferenciais',
+		'riscotex_destaque'  => 'Destaques: Universal e Microperfurado',
+		'riscotex_prod'      => 'Produtos',
+		'riscotex_perf'      => 'Perfuração Universal',
+		'riscotex_seg'       => 'Segmentos',
+		'riscotex_contato'   => 'Contato e formulário',
+		'riscotex_whats'     => 'Botão flutuante de WhatsApp',
+		'riscotex_rodape'    => 'Rodapé',
 	);
 	$i = 10;
 	foreach ( $sections as $id => $title ) {
@@ -269,15 +319,17 @@ function riscotex_customize_register( $wp_customize ) {
 	riscotex_add_text( $wp_customize, 'riscotex_hero', 'marca', 'Nome da marca (topo)' );
 	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_eyebrow', 'Selo acima do título' );
 	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_titulo', 'Título principal (H1)' );
-	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_subtitulo', 'Subtitulo' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_subtitulo', 'Subtítulo' );
 	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_texto', 'Parágrafo', 'textarea' );
-	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_btn1', 'Botao 1 (texto)' );
-	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_btn2', 'Botao 2 (texto)' );
 	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_tagline', 'Assinatura sob o logo' );
-	riscotex_add_text( $wp_customize, 'riscotex_hero', 'whatsapp_link', 'Link do WhatsApp' );
-	riscotex_add_text( $wp_customize, 'riscotex_hero', 'whatsapp_btn_topo', 'Botao WhatsApp (topo)' );
-	riscotex_add_text( $wp_customize, 'riscotex_hero', 'whatsapp_flutuante', 'Botao WhatsApp flutuante' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_btn1', 'Botão 1 - texto' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_btn1_link', 'Botão 1 - link' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_btn2', 'Botão 2 - texto (deixe vazio para ocultar)' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'hero_btn2_link', 'Botão 2 - link' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'topo_btn', 'Botão do menu - texto (vazio para ocultar)' );
+	riscotex_add_text( $wp_customize, 'riscotex_hero', 'topo_btn_link', 'Botão do menu - link' );
 	riscotex_add_image( $wp_customize, 'riscotex_hero', 'hero_img', 'Imagem de fundo do topo' );
+	riscotex_add_image( $wp_customize, 'riscotex_hero', 'hero_logo', 'Logo exibido no topo do banner' );
 
 	// Sobre
 	riscotex_add_text( $wp_customize, 'riscotex_sobre', 'sobre_eyebrow', 'Selo da seção' );
@@ -286,29 +338,50 @@ function riscotex_customize_register( $wp_customize ) {
 	riscotex_add_text( $wp_customize, 'riscotex_sobre', 'sobre_texto2', 'Parágrafo 2', 'textarea' );
 	riscotex_add_text( $wp_customize, 'riscotex_sobre', 'sobre_texto3', 'Parágrafo 3', 'textarea' );
 
-	// Diferenciais + Produtos (repetidores)
-	$reps = riscotex_repeaters();
 	// Por que escolher
 	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_eyebrow', 'Selo da seção' );
 	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_titulo', 'Título' );
 	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_texto', 'Parágrafo', 'textarea' );
 	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_cta_texto', 'Chamada final da seção' );
-	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_cta_btn', 'Botão WhatsApp da seção' );
+	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_cta_btn', 'Botão da seção - texto' );
+	riscotex_add_text( $wp_customize, 'riscotex_porque', 'porque_cta_link', 'Botão da seção - link' );
 	for ( $s = 1; $s <= 4; $s++ ) {
 		riscotex_add_text( $wp_customize, 'riscotex_porque', 'stat' . $s . '_num', "Número $s (destaque do topo)" );
 		riscotex_add_text( $wp_customize, 'riscotex_porque', 'stat' . $s . '_label', "Legenda do número $s" );
 	}
 
+	// Diferenciais
 	riscotex_add_text( $wp_customize, 'riscotex_dif', 'dif_eyebrow', 'Selo da seção' );
-
 	riscotex_add_text( $wp_customize, 'riscotex_dif', 'dif_titulo', 'Título' );
-	riscotex_add_text( $wp_customize, 'riscotex_dif', 'whatsapp_dif_btn', 'Botao WhatsApp da seção' );
+	riscotex_add_text( $wp_customize, 'riscotex_dif', 'dif_btn', 'Botão da seção - texto (vazio para ocultar)' );
+	riscotex_add_text( $wp_customize, 'riscotex_dif', 'dif_btn_link', 'Botão da seção - link' );
+
+	// Destaques
+	riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque_eyebrow', 'Selo da seção' );
+	riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque_titulo', 'Título' );
+	riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque_texto', 'Parágrafo', 'textarea' );
+	foreach ( array( 1 => 'Destaque 1 (Papel Universal)', 2 => 'Destaque 2 (Microperfurado)' ) as $d => $nome ) {
+		riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_tag', "$nome - selo" );
+		riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_titulo', "$nome - título" );
+		riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_texto', "$nome - texto", 'textarea' );
+		riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_medida', "$nome - medida" );
+		for ( $k = 1; $k <= 3; $k++ ) {
+			riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_item' . $k, "$nome - item $k" );
+		}
+		riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_btn', "$nome - botão (texto)" );
+		riscotex_add_text( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_link', "$nome - botão (link)" );
+		riscotex_add_image( $wp_customize, 'riscotex_destaque', 'destaque' . $d . '_img', "$nome - imagem" );
+	}
+
+	// Produtos
 	riscotex_add_text( $wp_customize, 'riscotex_prod', 'prod_eyebrow', 'Selo da seção' );
 	riscotex_add_text( $wp_customize, 'riscotex_prod', 'prod_titulo', 'Título' );
-	riscotex_add_text( $wp_customize, 'riscotex_prod', 'prod_btn', 'Texto do botao' );
+	riscotex_add_text( $wp_customize, 'riscotex_prod', 'prod_btn', 'Botão - texto' );
+	riscotex_add_text( $wp_customize, 'riscotex_prod', 'prod_btn_link', 'Botão - link' );
 	riscotex_add_image( $wp_customize, 'riscotex_prod', 'prod_img', 'Imagem dos produtos' );
 
-	foreach ( $reps as $prefix => $data ) {
+	// Repetidores (diferenciais, motivos, produtos)
+	foreach ( riscotex_repeaters() as $prefix => $data ) {
 		$section = 'riscotex_' . $prefix;
 		foreach ( $data['items'] as $index => $item ) {
 			$n = $index + 1;
@@ -323,7 +396,8 @@ function riscotex_customize_register( $wp_customize ) {
 	riscotex_add_text( $wp_customize, 'riscotex_perf', 'perf_eyebrow', 'Selo da seção' );
 	riscotex_add_text( $wp_customize, 'riscotex_perf', 'perf_titulo', 'Título' );
 	riscotex_add_text( $wp_customize, 'riscotex_perf', 'perf_texto', 'Parágrafo', 'textarea' );
-	riscotex_add_text( $wp_customize, 'riscotex_perf', 'perf_btn', 'Texto do botao' );
+	riscotex_add_text( $wp_customize, 'riscotex_perf', 'perf_btn', 'Botão - texto' );
+	riscotex_add_text( $wp_customize, 'riscotex_perf', 'perf_btn_link', 'Botão - link' );
 	riscotex_add_image( $wp_customize, 'riscotex_perf', 'perf_img', 'Imagem da seção' );
 	foreach ( riscotex_beneficios() as $index => $b ) {
 		$n = $index + 1;
@@ -346,29 +420,54 @@ function riscotex_customize_register( $wp_customize ) {
 		'cta_eyebrow'      => 'Selo da seção',
 		'cta_titulo'       => 'Título',
 		'cta_texto'        => 'Parágrafo',
-		'form_btn'         => 'Texto do botao do formulário',
+		'form_btn'         => 'Texto do botão do formulário',
 		'form_email'       => 'E-mail que recebe o formulário',
 		'form_sucesso'     => 'Mensagem de sucesso',
 		'form_erro'        => 'Mensagem de erro',
 		'contato_endereco' => 'Endereço',
 		'contato_email1'   => 'E-mail 1',
-		'contato_email2'   => 'E-mail 2',
-		'contato_email3'   => 'E-mail 3',
+		'contato_email2'   => 'E-mail 2 (vazio para ocultar)',
+		'contato_email3'   => 'E-mail 3 (vazio para ocultar)',
 		'contato_tel1'     => 'Telefone 1',
-		'contato_tel2'     => 'Telefone 2',
+		'contato_tel2'     => 'Telefone 2 (vazio para ocultar)',
+		'label_nome'       => 'Rótulo do campo Nome',
+		'label_empresa'    => 'Rótulo do campo Empresa',
+		'label_telefone'   => 'Rótulo do campo Telefone',
+		'label_whatsapp'   => 'Rótulo do campo WhatsApp',
+		'label_email'      => 'Rótulo do campo E-mail',
+		'label_cidade'     => 'Rótulo do campo Cidade',
+		'label_estado'     => 'Rótulo do campo Estado',
+		'label_produto'    => 'Rótulo do campo Produto',
+		'label_quantidade' => 'Rótulo do campo Quantidade',
+		'label_mensagem'   => 'Rótulo do campo Mensagem',
 	) as $key => $label ) {
 		riscotex_add_text( $wp_customize, 'riscotex_contato', $key, $label, in_array( $key, array( 'cta_texto', 'form_sucesso', 'form_erro' ), true ) ? 'textarea' : 'text' );
 	}
 
-	// Rodape
-	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_titulo', 'Título do rodape' );
-	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_texto', 'Texto do rodape', 'textarea' );
+	// WhatsApp flutuante
+	riscotex_add_text( $wp_customize, 'riscotex_whats', 'whatsapp_link', 'Link do WhatsApp' );
+	riscotex_add_text( $wp_customize, 'riscotex_whats', 'whatsapp_flutuante', 'Texto do botão flutuante' );
+	$wp_customize->add_setting( 'riscotex_whatsapp_mostrar', array( 'default' => 'sim', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control(
+		'riscotex_whatsapp_mostrar',
+		array(
+			'label'   => 'Exibir botão flutuante?',
+			'section' => 'riscotex_whats',
+			'type'    => 'select',
+			'choices' => array( 'sim' => 'Sim', 'nao' => 'Não' ),
+		)
+	);
+
+	// Rodapé
+	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_titulo', 'Título do rodapé' );
+	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_texto', 'Texto do rodapé', 'textarea' );
 	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_copy', 'Linha de copyright' );
+	riscotex_add_image( $wp_customize, 'riscotex_rodape', 'rodape_logo', 'Logo do rodapé' );
 }
 add_action( 'customize_register', 'riscotex_customize_register' );
 
 /* -------------------------------------------------------------------------
- * Formulário de orçamento -> envia para vanessa@riscotex.com.br
+ * Formulário de orçamento -> envia para contato@riscotex.com.br
  * ---------------------------------------------------------------------- */
 function riscotex_handle_form() {
 	$redirect = wp_get_referer() ? wp_get_referer() : home_url( '/' );
@@ -392,22 +491,22 @@ function riscotex_handle_form() {
 		'email'      => 'E-mail',
 		'cidade'     => 'Cidade',
 		'estado'     => 'Estado',
-		'produto'    => 'Produto de Interesse',
-		'quantidade' => 'Quantidade Estimada',
+		'produto'    => 'Produto de interesse',
+		'quantidade' => 'Quantidade estimada',
 		'mensagem'   => 'Mensagem',
 	);
 
-	$linhas = array();
+	$linhas  = array();
 	$valores = array();
 	foreach ( $campos as $key => $label ) {
-		$valor = isset( $_POST[ $key ] ) ? sanitize_textarea_field( wp_unslash( $_POST[ $key ] ) ) : '';
+		$valor           = isset( $_POST[ $key ] ) ? sanitize_textarea_field( wp_unslash( $_POST[ $key ] ) ) : '';
 		$valores[ $key ] = $valor;
-		$linhas[] = $label . ': ' . $valor;
+		$linhas[]        = $label . ': ' . $valor;
 	}
 
 	$email_destino = sanitize_email( riscotex_text( 'form_email' ) );
 	if ( ! is_email( $email_destino ) ) {
-		$email_destino = 'vanessa@riscotex.com.br';
+		$email_destino = 'contato@riscotex.com.br';
 	}
 
 	$assunto = 'Novo pedido de orçamento - ' . ( $valores['nome'] ? $valores['nome'] : 'Site Riscotex' );
@@ -427,7 +526,7 @@ function riscotex_handle_form() {
 add_action( 'admin_post_nopriv_riscotex_form', 'riscotex_handle_form' );
 add_action( 'admin_post_riscotex_form', 'riscotex_handle_form' );
 
-/* Titulo da pagina com fallback (evita <title> vazio). */
+/* Título da página com fallback (evita <title> vazio). */
 function riscotex_document_title( $parts ) {
 	if ( empty( $parts['title'] ) ) {
 		$parts['title'] = riscotex_text( 'hero_titulo' );
