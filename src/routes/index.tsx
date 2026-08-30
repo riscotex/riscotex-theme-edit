@@ -424,7 +424,7 @@ export function Index() {
 
             <div>
               <img
-                src="/assets/img/papel-universal.jpg"
+                src="/assets/img/perfuracao-universal.jpg"
                 alt="Perfuração Universal Riscotex"
                 className="rounded-3xl shadow-2xl border border-white/10 w-full object-cover"
               />

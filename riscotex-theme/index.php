@@ -182,7 +182,7 @@ $status = isset( $_GET['enviado'] ) ? sanitize_text_field( wp_unslash( $_GET['en
 					<a class="btn btn--primary" href="<?php echo esc_url( riscotex_text( 'perf_btn_link' ) ); ?>"><?php riscotex_e( 'perf_btn' ); ?></a>
 				<?php endif; ?>
 			</div>
-			<img class="img" loading="lazy" src="<?php echo riscotex_img( 'perf_img', 'papel-universal.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'perf_titulo' ) ); ?>">
+			<img class="img" loading="lazy" src="<?php echo riscotex_img( 'perf_img', 'perfuracao-universal.jpg' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'perf_titulo' ) ); ?>">
 		</div>
 	</section>
 
