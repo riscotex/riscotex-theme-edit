@@ -191,28 +191,33 @@ function riscotex_repeaters() {
 				array( 'Qualidade garantida', 'Mantemos rigorosos padrões de controle para assegurar uniformidade e excelência em todos os produtos.' ),
 				array( 'Atendimento especializado', 'Nossa equipe possui conhecimento técnico para orientar e encontrar a melhor solução para cada aplicação.' ),
 				array( 'Agilidade e compromisso', 'Atendimento eficiente, produção organizada e entregas dentro dos prazos estabelecidos.' ),
-				array( 'Inovação constante', 'Investimos continuamente em novas soluções para acompanhar a evolução do mercado.' ),
+				array( 'Parceria de longo prazo', 'Construímos relacionamentos sólidos baseados em confiança, transparência e resultados.' ),
 			),
 		),
 		'porque' => array(
 			'label' => 'Motivo',
 			'items' => array(
-				array( 'Vácuo uniforme', 'A distribuição correta dos furos mantém o tecido firme do início ao fim do enfesto.' ),
-				array( 'Menos refugo', 'Estabilidade no corte reduz peças fora de medida e retrabalho na produção.' ),
-				array( 'Riscos legíveis', 'O papel garante impressão nítida e leitura fácil dos riscos pela equipe.' ),
-				array( 'Bobinas consistentes', 'Gramatura e perfuração uniformes em toda a bobina, sem variação entre lotes.' ),
+				array( 'Perfuração universal exclusiva', 'Uma única bobina que atende todos os processos de corte, sem trocas de papel a cada tipo de enfesto.' ),
+				array( 'Vácuo estável em toda a mesa', 'A distribuição dos furos evita resvalos e mantém o enfesto firme do início ao fim do corte.' ),
+				array( 'Menos perdas, mais produtividade', 'Redução de falhas operacionais, retrabalho e paradas de máquina na sua linha de produção.' ),
+				array( 'Especificações sob medida', 'Gramatura, largura e diâmetro produzidos conforme a máquina e o processo de cada cliente.' ),
+				array( 'Atendimento técnico de verdade', 'Equipe que conhece corte automático e ajuda a escolher o papel certo para cada aplicação.' ),
+				array( 'Entrega no prazo combinado', 'Produção organizada e logística previsível para você nunca parar por falta de papel.' ),
 			),
 		),
 		'prod'   => array(
 			'label' => 'Produto',
 			'items' => array(
-				array( 'Papel Universal perfurado', 'Perfuração exclusiva Riscotex, com furo de 2,5 mm, indicada para todos os tipos de corte automático.' ),
-				array( 'Papel microperfurado', 'Microfuros densos e uniformes para tecidos leves, enfestos altos e sucção homogênea.' ),
-				array( 'Papel kraft para risco', 'Papel técnico para impressão de riscos com excelente definição e resistência.' ),
-				array( 'Papel de cobertura (filme substituto)', 'Alternativa econômica para cobrir o enfesto e manter o vácuo durante o corte.' ),
-				array( 'Bobinas sob medida', 'Larguras, gramaturas e metragens produzidas conforme a sua mesa de corte.' ),
+				array( 'Papel Perfuração Universal', 'Tecnologia exclusiva da Riscotex desenvolvida para atender diferentes processos de corte industrial com máxima eficiência. Sua configuração proporciona excelente atuação do vácuo em toda a área da mesa de corte.' ),
+				array( 'Papel Microperfurado', 'Desenvolvido para aplicações que exigem desempenho consistente e excelente comportamento durante os processos automatizados de corte.' ),
+				array( 'Papel Plotter', 'Utilizado para plotagem e desenvolvimento de riscos industriais. Disponível em diferentes especificações.' ),
+				array( 'Papel Separação de Tonalidade', 'Auxilia na organização dos processos produtivos, facilitando a identificação e separação dos materiais.' ),
+				array( 'Papel Proteção para Calandra', 'Desenvolvido para proteção eficiente durante operações industriais, preservando os equipamentos.' ),
+				array( 'Papel para Transferência de Cor / Sublimação', 'Produzido para aplicações que exigem qualidade e confiabilidade nos processos de transferência de cor.' ),
+				array( 'Semi-Kraft', 'Gramaturas disponíveis: 40g, 50g, 60g, 70g e 80g.' ),
 			),
 		),
+
 	);
 }
 
