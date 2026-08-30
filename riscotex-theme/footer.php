@@ -2,6 +2,14 @@
 	<div class="wrap">
 		<img class="footer__logo" src="<?php echo riscotex_img( 'rodape_logo', 'logo-riscotex.png' ); ?>" alt="<?php echo esc_attr( riscotex_text( 'rodape_titulo' ) ); ?>">
 		<p class="footer__text"><?php riscotex_e( 'rodape_texto' ); ?></p>
+		<?php if ( riscotex_raw( 'rodape_instagram' ) ) : ?>
+			<div class="footer__social">
+				<a class="footer__social-link" href="<?php echo esc_url( riscotex_text( 'rodape_instagram' ) ); ?>" target="_blank" rel="noopener" aria-label="Siga-nos no Instagram">
+					<?php echo riscotex_instagram_icon(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<span><?php riscotex_e( 'rodape_instagram_label', 'Instagram: @riscotex' ); ?></span>
+				</a>
+			</div>
+		<?php endif; ?>
 		<p class="footer__copy">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php riscotex_e( 'rodape_copy' ); ?></p>
 	</div>
 </footer>

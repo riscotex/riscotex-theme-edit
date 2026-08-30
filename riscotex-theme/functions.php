@@ -163,10 +163,10 @@ function riscotex_defaults() {
 		'form_erro'          => 'Não foi possível enviar sua mensagem. Tente novamente ou escreva para contato@riscotex.com.br.',
 		'contato_endereco'   => 'BR 280, 2941 - Rio Negrinho - SC',
 		'contato_email1'     => 'contato@riscotex.com.br',
-		'contato_email2'     => 'comercial@riscotex.com.br',
+		'contato_email2'     => '',
 		'contato_email3'     => '',
-		'contato_tel1'       => '(41) 99619-8555',
-		'contato_tel2'       => '(47) 99238-4773',
+		'contato_tel1'       => '',
+		'contato_tel2'       => '',
 
 		// Rótulos do formulário
 		'label_nome'         => 'Nome*',
@@ -185,9 +185,11 @@ function riscotex_defaults() {
 		'whatsapp_mostrar'   => 'sim',
 
 		// Rodapé
-		'rodape_titulo'      => 'RISCOTEX PAPÉIS',
-		'rodape_texto'       => 'Tecnologia, qualidade e inovação em papéis técnicos para corte industrial. Soluções desenvolvidas para aumentar a eficiência produtiva e contribuir para o crescimento da sua empresa.',
-		'rodape_copy'        => 'Riscotex Papéis Ltda. - riscotex.com.br',
+		'rodape_titulo'          => 'RISCOTEX PAPÉIS',
+		'rodape_texto'           => 'Tecnologia, qualidade e inovação em papéis técnicos para corte industrial. Soluções desenvolvidas para aumentar a eficiência produtiva e contribuir para o crescimento da sua empresa.',
+		'rodape_instagram'       => 'https://instagram.com/riscotex',
+		'rodape_instagram_label' => 'Instagram: @riscotex',
+		'rodape_copy'            => 'Riscotex Papéis Ltda. - riscotex.com.br',
 	);
 }
 
@@ -291,6 +293,11 @@ function riscotex_img( $key, $fallback_file ) {
 /** Ícone SVG do WhatsApp. */
 function riscotex_whats_icon() {
 	return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.7h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.64.96.97-3.55-.23-.36a9.58 9.58 0 0 1-1.47-5.12c0-5.3 4.32-9.6 9.63-9.6a9.56 9.56 0 0 1 6.8 2.82 9.5 9.5 0 0 1 2.82 6.79c0 5.3-4.32 9.6-9.62 9.6M20.52 3.5A11.86 11.86 0 0 0 12.05 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.15 1.6 5.96L0 24l6.26-1.64a11.94 11.94 0 0 0 5.79 1.47h.01c6.58 0 11.94-5.35 11.94-11.93 0-3.19-1.24-6.19-3.48-8.4"/></svg>';
+}
+
+/** Ícone SVG do Instagram. */
+function riscotex_instagram_icon() {
+	return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>';
 }
 
 /* -------------------------------------------------------------------------
@@ -596,6 +603,8 @@ function riscotex_customize_register( $wp_customize ) {
 	// 11. Rodapé
 	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_titulo', 'Título do rodapé' );
 	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_texto', 'Texto do rodapé', 'textarea' );
+	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_instagram', 'Link do Instagram (ex: https://instagram.com/riscotex)' );
+	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_instagram_label', 'Texto do link do Instagram' );
 	riscotex_add_text( $wp_customize, 'riscotex_rodape', 'rodape_copy', 'Linha de copyright' );
 	riscotex_add_image( $wp_customize, 'riscotex_rodape', 'rodape_logo', 'Logo do rodapé' );
 }
